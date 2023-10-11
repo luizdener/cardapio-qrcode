@@ -1,0 +1,24 @@
+.order-type-container {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    max-width: 500px;
+
+    color: white;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    text-shadow: 5px 4px 7px black;
+
+    transition: 1s;
+
+    cursor: pointer;
+}
+
+.order-type-container:hover {
+    scale: 1.04;
+}

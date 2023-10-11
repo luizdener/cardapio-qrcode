@@ -1,0 +1,50 @@
+.item {
+    display: flex;
+    gap: 10px;
+
+    background-color: #cfcfcf;
+    border-radius: 20px;
+
+    border: none;
+
+    transition: .8s;
+    cursor: pointer;
+
+    &:hover{
+        scale: 1.03;
+    }
+
+    img {
+        width: 40%;
+        border-radius: 10%;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 8px;
+
+        h3 {
+            margin-bottom: 8px;
+        }
+
+        p:last-child{
+            margin-top: 20px;
+        }
+    }
+
+    svg {
+        font-size: 2rem;
+        margin-top: 5px;
+        margin-right: 5px;
+
+        &:hover {
+            color: #853340;
+        }
+
+    }
+
+   
+}

@@ -1,0 +1,64 @@
+.cart {
+    padding: 20px;
+
+    .items-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        min-height: 85vh;
+    }
+
+    .actions {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 100px;
+
+        margin-top: 20px;
+        padding-right: 10px;
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        svg {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .add:hover {
+            color: #195814;
+        }
+    }
+
+    .cart-footer {
+        margin-top: 20px;
+        
+        display: flex;
+
+        align-items: baseline;
+        justify-content: space-between;
+
+        button {
+            padding: 8px;
+
+            border: none;
+            border-radius: 10px;
+
+            font-size: 1.4rem;
+            color: #fff;
+
+            background-color: #853340;
+
+            cursor: pointer;
+
+            transition: .8s;
+        }
+
+        button:hover{
+            scale: 1.05;
+        }
+    }
+}

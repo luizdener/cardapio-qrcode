@@ -1,0 +1,12 @@
+{
+  "carts": [
+    {
+      "id": 1,
+      "items": [
+        "Pimenta",
+        "Gomes"
+      ],
+      "totalCost": 50.5
+    }
+  ]
+}
