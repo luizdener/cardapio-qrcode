@@ -6,7 +6,20 @@
         flex-direction: column;
         gap: 20px;
 
-        min-height: 85vh;
+        min-height: 70vh;
+
+        .item {
+            .amount-container {
+                justify-content: space-between;
+                button {
+                    display: none;
+                }
+            }
+
+            .add-container {
+                display: none;
+            }
+        }
     }
 
     .actions {

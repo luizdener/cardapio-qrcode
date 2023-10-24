@@ -9,15 +9,16 @@ import Item from '../item-order/Item'
 
 import { itens } from '../../variables/Itens'
 import Context from '../../variables/Context'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const List = () => {
+  const {currentQuantity} = useSelector(rootReducer => rootReducer.quantityReducer)
+  const dispatch = useDispatch()
 
   const [items, setItems] = useState([])
   const [typeItems, setTypeItems] = useContext(Context)
-
   const [cartData, setCartData] = useState([])
-
   const list = document.querySelector('.list-items')
   
   useEffect(() => {
@@ -62,23 +63,45 @@ const List = () => {
     .catch((err)=> console.log(err))
   }, [])
 
-  function addToCart(item, price) {
-  
-    cartData.items.push(item)
-    cartData.totalCost += price
+  const  addToCart = (item, price, quantity) => {
+    // Verifica se item já está no carrinho para atualizar apenas a quantidade
+    cartData.items.forEach((e) => {
+      let index = cartData.items.findIndex(i => i===e)
+      if(e.item == item){
+        cartData.items[index] = {item, quantity}
+
+        fetch('http://localhost:5000/carts/1', {
+          method: 'PATCH',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(cartData)
+        })
+        .then((resp) => resp.json())
+        .then((data => data))
+        .catch((err) => console.log(err))
+      }
+    })
+
+
+    // Adiciona item ao carrinho caso ainda não esteja
+    if(cartData.items.findIndex(e => e.item === item) == -1) {
+      cartData.items.push({item, quantity})
+      cartData.totalCost += (price * quantity)
 
       fetch('http://localhost:5000/carts/1', {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify(cartData),
+        body: JSON.stringify(cartData)
       })
       .then((resp) => resp.json())
       .then((data) => data)
       .catch((err) => console.log(err))
 
-      window.alert(`Item: ${item} adicionado ao carrinho`)
+      window.alert(`${item} foi adicionado ao carrinho`)
+      }
     }
 
   function closeItems(){
@@ -89,7 +112,14 @@ const List = () => {
     <div className='list-items'>
       <AiOutlineCloseCircle onClick={closeItems}/>
       <div className="container">
-        {items.map((item) => <Item key={item.id} onClick={() => addToCart(item.name, item.price)} itemName={item.name} srcImage={item.img} description={item.description} price={item.price}/> 
+        {items.map((item) => <Item 
+        key={item.id} 
+        onClick={addToCart}
+        itemName={item.name} 
+        srcImage={item.img} 
+        description={item.description}
+        price={item.price}
+        /> 
         )}
       </div>
     </div>

@@ -12,6 +12,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState([])
   const [cart, setCart] = useState([])
   const [cost, setCost] = useState()
+  const items = []
 
   useEffect(() => {
     fetch('http://localhost:5000/carts/1', {
@@ -29,6 +30,10 @@ const Cart = () => {
     })
     .catch((err) => console.log(err))
   },[])
+
+  for(var i = 0; i <= cart.length -1; i++){
+    items.push(cart[i].item)
+  }
 
   function getImage(itemName) {
 
@@ -199,17 +204,12 @@ const Cart = () => {
   return (
     <div className='cart'>
       <section className="items-container">
-        {cart.length > 0 ?
-          cart.map((item) => <Item 
-            itemName={item} 
-            price={getPrice(item)} 
-            srcImage={getImage(item)} 
-            description={getDescription(item)}
-            deleteAction={<BiTrash onClick={() => deleteItem(item, getPrice(item))}/>}
-          />)
-          :
-          <h1>Carrinho vazio</h1>
-        }
+        {items.map((iten) => <Item itemName={iten}
+        srcImage={getImage(iten)}
+        description={getDescription(iten)}
+        price={getPrice(iten)}
+        deleteAction={<BiTrash/>}
+        />)}
         </section>
 
         <section className='actions'>

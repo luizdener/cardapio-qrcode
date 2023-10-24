@@ -9,6 +9,10 @@ import Home from './routes/Home.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
 import Cart from './routes/Cart.jsx'
 
+// Redux
+import {Provider} from 'react-redux'
+import store from './redux/store.js'
+
 // importação de estilização
 import './styles/globals.scss'
 
@@ -27,6 +31,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
+    </Provider>
   </React.StrictMode>,
 )

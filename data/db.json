@@ -3,10 +3,24 @@
     {
       "id": 1,
       "items": [
-        "Pimenta",
-        "Gomes"
+        {
+          "item": "Sexy on the beach",
+          "quantity": 1
+        },
+        {
+          "item": "Pimenta",
+          "quantity": 1
+        },
+        {
+          "item": "Tropicalia",
+          "quantity": 1
+        },
+        {
+          "item": "Gomes",
+          "quantity": 3
+        }
       ],
-      "totalCost": 50.5
+      "totalCost": 323.5
     }
   ]
 }

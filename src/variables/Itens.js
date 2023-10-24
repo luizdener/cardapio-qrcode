@@ -23,14 +23,16 @@ export const itens = {
                 name: 'Pimenta',
                 img: './hamburguer.jpg',
                 description: 'Delicioso hamburguer com geleia de pimenta',
-                price: 20.5
+                price: 20.5,
+                
             },
             {
                 id: 2,
                 name: 'Gomes',
                 img: './hamburguer.jpg',
                 description: 'Delicioso hamburguer de frango com queijo cheddar',
-                price: 30
+                price: 30,
+                
             }
         ],
         drinks: [
@@ -39,7 +41,8 @@ export const itens = {
                 name: 'Sexy on the beach',
                 img: './drinks.jpg',
                 descripition: '',
-                price: 45.00
+                price: 45.00,
+
             },
             {
                 id: 2,
