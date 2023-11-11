@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {BiCartAdd} from 'react-icons/bi'
+
+import { useState } from 'react'
 
 import './item.scss'
 
-import { } from '../../variables/Itens'
+const Item = ({itemName, srcImage, description, price, onClick, deleteAction, amount, addFunction, subtractFunction}) => {
 
-const Item = ({itemName, srcImage, description, price, onClick, deleteAction}) => {
-  
   const [quantity, setQuantity] = useState(1)
 
-  const {currentQuantity} = useSelector(rootReducer => rootReducer.quantityReducer)
-  const dispatch = useDispatch()
-
   function addQuantity(){
-    setQuantity(quantity+1)
+    setQuantity(quantity + 1)
   }
 
   function subtractQuantity(){
@@ -26,27 +22,25 @@ const Item = ({itemName, srcImage, description, price, onClick, deleteAction}) =
 
   return (
     <div className="item">
-        <img src={srcImage}/>
+        <div className="img" style={{backgroundImage: `url(${srcImage})` }}></div>
+        
         <section>
-          <section className="header">
-            <h3>{itemName}</h3>
-            {deleteAction}
-          </section>
-          <p>{description}</p>
+          <h3 className='title'>{itemName}</h3>
+          <p className='icon'>{deleteAction}</p>
+          <p className='description'>{description}</p>
+          <p className="price">R$ {price}</p>
 
           <section className="amount-container">
-            <p>R$ {price}</p>
-          
-            <aside className='amount-buttons'>
-              <p>Quantidade: </p>
-              <button onClick={subtractQuantity}>-</button>
-              <div className='amount'>{quantity}</div>
-              <button onClick={addQuantity}>+</button>
-            </aside>
+            <p>Quantidade:</p>
+            <div className='amount-buttons'>
+              <button onClick={subtractFunction ? subtractFunction : subtractQuantity}>-</button>
+              <div className="amount">{amount ? amount : quantity}</div>
+              <button onClick={addFunction ? addFunction : addQuantity}>+</button>
+            </div>
           </section>
-
-          <div className="add-container"><button onClick={() => onClick(itemName, price, quantity)}>Adicionar ao carrinho</button></div>
+            <div className="add-container"><button onClick={() => onClick(itemName, price, quantity)}><BiCartAdd/>Adicionar ao carrinho</button></div>
         </section>
+
     </div>
   )
 }

@@ -2,25 +2,8 @@
   "carts": [
     {
       "id": 1,
-      "items": [
-        {
-          "item": "Sexy on the beach",
-          "quantity": 1
-        },
-        {
-          "item": "Pimenta",
-          "quantity": 1
-        },
-        {
-          "item": "Tropicalia",
-          "quantity": 1
-        },
-        {
-          "item": "Gomes",
-          "quantity": 3
-        }
-      ],
-      "totalCost": 323.5
+      "items": [],
+      "totalCost": 0
     }
   ]
 }

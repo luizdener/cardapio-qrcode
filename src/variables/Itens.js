@@ -2,19 +2,19 @@ export const itens = {
         batatas: [
             {
                 id: 1,
-                name: '',
+                name: 'Chedar crispy',
                 img: './bebidas.jpg',
-                descripition: '',
-                price: 0
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
+                price: 35.00
             }
         ],
         tábuas: [
             {
                 id: 1,
-                name: '',
+                name: 'Mundo',
                 img: './tabuas.jpg',
-                descripition: '',
-                price: 0
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
+                price: 150.00
             }
         ],
         hamburgueres: [
@@ -40,7 +40,7 @@ export const itens = {
                 id: 1,
                 name: 'Sexy on the beach',
                 img: './drinks.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 45.00,
 
             },
@@ -48,31 +48,31 @@ export const itens = {
                 id: 2,
                 name: 'Tropicalia',
                 img: './drinks.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 37.00
             },
             {
                 id: 3,
                 name: 'Spice black',
                 img: './drinks.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 45.00
             },
             {
                 id: 4,
                 name: 'Flamingo',
                 img: './drinks.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 45.00
             },
         ],
         bebidas: [
             {
                 id: 1,
-                name: '',
+                name: 'Eisenbahn',
                 img: './bebidas.jpg',
-                descripition: '',
-                price: 0
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa adadadaasd adas adas asdasdasd asdasdas adasddasa adadadaasd adas adas asdasdasd asdasdas adasddasa',
+                price: 12.00
             }
         ],
         sucos: [
@@ -80,7 +80,7 @@ export const itens = {
                 id: 1,
                 name: '',
                 img: './sucos.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 0
             }
         ],
@@ -89,7 +89,7 @@ export const itens = {
                 id: 1,
                 name: '',
                 img: './sobremesas.jpg',
-                descripition: '',
+                description: 'adadadaasd adas adas asdasdasd asdasdas adasddasa',
                 price: 0
             }
         ]

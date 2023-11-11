@@ -9,11 +9,29 @@
         min-height: 70vh;
 
         .item {
-            .amount-container {
-                justify-content: space-between;
-                button {
-                    display: none;
-                }
+            section {
+                grid-template-areas: 
+                    "title title icone"
+                    "desc desc desc"
+                    "price amount ."
+                ;
+
+                grid-template-columns: 1fr 1fr 30px;
+
+                    .icon {
+                        grid-area: icone;
+                        max-width: 5px;
+
+                        cursor: pointer;
+
+                        svg:hover{
+                            color: #853340;
+                        }
+                    }
+
+                    .amount-container{
+                        padding: 0px;
+                    }
             }
 
             .add-container {

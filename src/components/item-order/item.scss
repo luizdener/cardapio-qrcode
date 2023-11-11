@@ -1,6 +1,9 @@
 .item {
-    display: flex;
-    gap: 10px;
+    max-height: 160.13px;
+    display: grid;
+    grid-template-areas: "img . section";
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 10px;
 
     background-color: #cfcfcf;
     border-radius: 20px;
@@ -9,88 +12,143 @@
 
     transition: .8s;
 
-    img {
-        width: 40%;
+    .img {
+        min-width: 180px;
+        height: 160.13px;
+
+        grid-area: img;
+
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
         border-radius: 10%;
+
     }
 
     section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        grid-area: section;
 
-        padding: 8px;
+        padding-top: 8px;
 
-        .header {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            align-items: baseline;
-            gap: 25%;
+        display: grid;
+        grid-template-areas: 
+            "title title"
+            "desc desc"
+            "desc desc"
+            "price amount"
+            ". add"
+        ;
+    }
 
-            margin-bottom: 8px;
+    .title {
+        grid-area: title;
+        text-align: center;
+        width: 100%;
+        
+        margin-top: 5px;
+    }
 
-            svg {
-                font-size: 1.5rem;
+    .description {
+        grid-area: desc;
 
-                &:hover {
-                    color: #853340;
-                }
-            }
+        text-align: justify;
+        padding-right: 10px;
+
+        max-height: 60px;
+        margin-top: 5px;
+        margin-bottom: -8px;
+
+        overflow: scroll;
+
+        &::-webkit-scrollbar{
+            width: 0px;
         }
+    }
 
-        p:last-child{
-            margin-top: 20px;
-        }
+    .price {
+        grid-area: price;
+    }
 
-        .amount-container {
-            width: 100%;
+    .amount-container {
+        grid-area: amount;
+        padding: 0;
+
+        .amount-buttons{
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: baseline;
-
-            .amount-buttons{
-                display: flex;
-
-                button {
-                    width: 15px;
-                }
-
-                .amount {
-                    background-color: #fff;
-                    width: 25px;
-
-                    text-align: center;
-                    margin: auto;
-                }
-            }
-        }
-
-        .add-container{
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
 
             button{
-                background-color: green;
-                border: 1px solid black;
-                border-radius: 5px;
-                padding: 5px;
+                width: 20px;
+                height: 20px;
 
-                color: #fff;
+                border: none;
+
+                background-color: #fffcfc;
 
                 cursor: pointer;
-                transition: .4s;
 
-                margin-right: 20px;
+                &:first-child{
+                    border-radius: 8px 0px 0px 8px;
+                    border-right: 1px solid black;
+                }
 
-                &:hover{
-                    scale: 1.03;
+                &:last-child{
+                    border-radius: 0 8px 8px 0px;
+                    border-left: 1px solid black;
+                }
+
+                &:first-child:hover{
+                    background-color: rgba(219, 27, 27, 0.422);
+                }
+
+                &:last-child:hover{
+                    background-color: rgba(19, 134, 19, 0.543);
                 }
             }
+
+            .amount {
+                text-align: center;
+                background-color: #fff;
+                width: 35px;
+                height: 20px;
+            }
+
         }
-    } 
+    }
+
+    .add-container {
+        grid-area: add;
+        margin-top: 10px;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            max-width: 200px;
+            background-color:  rgba(19, 134, 19, 0.543);
+
+            border: 1px solid black;
+            border-radius: 8px;
+
+            margin-bottom: 5px;
+            cursor: pointer;
+
+            svg {
+                font-size: 30px;
+                color: black;
+
+                position: inherit;
+                
+                &:hover {
+                    color: black;
+                }
+            }
+
+            &:hover {
+                background-color:  rgba(19, 134, 19, 0.737);
+            }
+        }
+    }
 }

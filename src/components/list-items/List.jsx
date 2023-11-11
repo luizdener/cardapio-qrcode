@@ -9,12 +9,8 @@ import Item from '../item-order/Item'
 
 import { itens } from '../../variables/Itens'
 import Context from '../../variables/Context'
-import { useDispatch, useSelector } from 'react-redux'
-
 
 const List = () => {
-  const {currentQuantity} = useSelector(rootReducer => rootReducer.quantityReducer)
-  const dispatch = useDispatch()
 
   const [items, setItems] = useState([])
   const [typeItems, setTypeItems] = useContext(Context)
@@ -68,8 +64,9 @@ const List = () => {
     cartData.items.forEach((e) => {
       let index = cartData.items.findIndex(i => i===e)
       if(e.item == item){
-        cartData.items[index] = {item, quantity}
-
+        cartData.items[index].quantity += quantity
+        cartData.totalCost += price * quantity
+        
         fetch('http://localhost:5000/carts/1', {
           method: 'PATCH',
           headers: {
@@ -78,11 +75,14 @@ const List = () => {
           body: JSON.stringify(cartData)
         })
         .then((resp) => resp.json())
-        .then((data => data))
+        .then((data => {
+          setCartData(data)
+        }))
         .catch((err) => console.log(err))
+
+        window.alert(`Adicionado ${quantity} ${item} ao carrinho`)
       }
     })
-
 
     // Adiciona item ao carrinho caso ainda não esteja
     if(cartData.items.findIndex(e => e.item === item) == -1) {
@@ -106,6 +106,7 @@ const List = () => {
 
   function closeItems(){
     document.querySelector('.list-items').style = 'display: none'
+    setItems([])
   }
 
   return (

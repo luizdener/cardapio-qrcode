@@ -6,7 +6,6 @@ import {BiCartAdd, BiTrash} from 'react-icons/bi'
 import Item from '../components/item-order/Item'
 
 import { itens } from '../variables/Itens'
-
 const Cart = () => {
 
   const [cartData, setCartData] = useState([])
@@ -133,57 +132,63 @@ const Cart = () => {
   }
 
   function getDescription(itemName){
-    var descripition = ''
+    var description = ''
 
     itens.batatas.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
 
     itens.tábuas.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
     
     itens.hamburgueres.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.description
+        description = el.description
       }
     })
 
     itens.drinks.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
 
     itens.bebidas.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
 
     itens.sucos.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
 
     itens.sobremesas.forEach((el) => {
       if(el.name === itemName){
-        descripition = el.descripition
+        description = el.description
       }
     })
 
-    return descripition
+    return description
   }
 
   function deleteItem(item, price){
+    cartData.items.forEach((e) => {
+      if(e.item == item){
+        let index = cartData.items.findIndex(i => i === e)
+        let quantity = cartData.items[index].quantity
 
-    cartData.items.splice(cartData.items.indexOf(item), 1)
-    cartData.totalCost -= price
+        cartData.items.splice(index, 1)
+        cartData.totalCost -= quantity * price
+      }
+    })
     
     fetch('http://localhost:5000/carts/1', {
       method: 'PATCH',
@@ -201,15 +206,81 @@ const Cart = () => {
     .catch((err) => console.log(err))
   }
 
+  function setAmount(iten){
+    var amount = 10
+    cartData.items.forEach((e) => {
+      if(e.item === iten){
+        amount = e.quantity
+      }
+    })
+
+    return amount
+  }
+
+  function addItem(item, price){
+    cartData.items.forEach((e) => {
+      if(e.item == item){
+        let index = cartData.items.findIndex(i => i === e)
+
+        cartData.items[index].quantity += 1
+        cartData.totalCost += price
+      }
+
+      fetch('http://localhost:5000/carts/1', {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(cartData)
+      })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCartData(data)
+        setCart(data.items)
+        setCost(data.totalCost)
+      })
+    })
+  }
+
+  function subtractItem(item, price){
+    cartData.items.forEach((e) => {
+      if(e.item == item){
+        let index = cartData.items.findIndex(i => i === e)
+        if(cartData.items[index].quantity == 1){
+          return
+        }
+        cartData.items[index].quantity -= 1
+        cartData.totalCost -= price
+      }
+
+      fetch('http://localhost:5000/carts/1', {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(cartData)
+      })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCartData(data)
+        setCart(data.items)
+        setCost(data.totalCost)
+      })
+    })
+  }
+
   return (
     <div className='cart'>
       <section className="items-container">
-        {items.map((iten) => <Item itemName={iten}
+        {items.length > 0 ? items.map((iten) => <Item itemName={iten}
         srcImage={getImage(iten)}
         description={getDescription(iten)}
         price={getPrice(iten)}
-        deleteAction={<BiTrash/>}
-        />)}
+        amount={setAmount(iten)}
+        addFunction={() => addItem(iten, getPrice(iten))}
+        subtractFunction={() => subtractItem(iten, getPrice(iten))}
+        deleteAction={<BiTrash onClick={() => deleteItem(iten, getPrice(iten))}/>}
+        />) : <h1>Carrinho Vazio</h1>}
         </section>
 
         <section className='actions'>
